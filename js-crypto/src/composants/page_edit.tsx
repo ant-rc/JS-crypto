@@ -8,12 +8,10 @@ interface Note {
 
 function Modifier({ note, onSave }: { note: Note; onSave: (updatedContent: string) => void }) {
   const [content, setContent] = useState(note.content);
-  
-  // const [isPasswordVerified, setPasswordVerified] = useState(false); appelle de la const booléenne
   const [isPasswordVerified, setPasswordVerified] = useState(false); //verifie si le mdp est valide
   const [password, setPassword] = useState(''); // stocke le mdp saisi
 
-  // Fonction pour gérer la vérification du mot de passe
+  //fonction vérification du mdp
   const handlePasswordVerify = () => {
     // Remplace 'motdepasse' par le mot de passe correct
     if (password === 'motdepasse') {
