@@ -6,21 +6,19 @@ interface Note {
   content: string;
 }
 
-function PageCreation({ onAddNote }: { onAddNote: (note: Note) => void }) {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+function PageCreation({ onAddNote }: { onAddNote: (note: Note) => void }) { 
+  const [title, setTitle] = useState(""); 
+  const [content, setContent] = useState(""); 
 
-  const handleCreate = () => {
-    // const encryptedContent = Encrypte(content);
+  const handleCreate = () => { 
+      const { aesEncrypted } = Encrypte(content); //utilise seulement aesEncrypted
+      onAddNote({ 
+          title, 
+          content: aesEncrypted, //contenu chiffré
+      }); 
 
-    // `encryptedContent` pour faire l'appelle au composant encrypte 
-    onAddNote({
-      title,
-      content /* Encryptage du contenu avec encryptedContent */,
-    });
-
-    setTitle("");
-    setContent("");
+      setTitle(""); //reinitialise le titre et en bas le contenu
+      setContent(""); 
   };
 
   return (
