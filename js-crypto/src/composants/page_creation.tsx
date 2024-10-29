@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import Encrypte from './Encrypte'; // Importation du composant encrypté
+import Encrypte from './encrypte'; // Importation du composant encrypté
 
 interface Note {
   title: string;
