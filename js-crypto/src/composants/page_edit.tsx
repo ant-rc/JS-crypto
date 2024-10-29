@@ -6,7 +6,7 @@ interface Note {
   content: string;
 }
 
-function Modifier({ note, onSave }: { note: Note; onSave: (updatedContent: string) => void }) {
+function Modifier({ note, onSave, onDelete }: { note: Note; onSave: (updatedContent: string) => void; onDelete: () => void }) {
   const [content, setContent] = useState(note.content);
   const [isPasswordVerified, setPasswordVerified] = useState(false); //verifie si le mdp est valide
   const [password, setPassword] = useState(''); // stocke le mdp saisi
@@ -23,6 +23,12 @@ function Modifier({ note, onSave }: { note: Note; onSave: (updatedContent: strin
 
   const handleSave = () => {
     onSave(content);
+  };
+
+  const handleDelete = () => {
+    if (window.confirm("Suppression définitive de cette note ?")) {
+      onDelete();
+    }
   };
 
   return (
@@ -47,6 +53,7 @@ function Modifier({ note, onSave }: { note: Note; onSave: (updatedContent: strin
             onChange={(e) => setContent(e.target.value)} // Met à jour le contenu de la note
           />
           <button onClick={handleSave}>Sauvegarder</button>
+          <button onClick={handleDelete}>Supprimer</button>
         </div>
       )}
     </div>
