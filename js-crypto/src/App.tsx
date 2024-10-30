@@ -26,12 +26,20 @@ function App() {
     }
   };
 
+  const deleteNote = () => {
+    if (selectedNoteIndex !== null) {
+      const updatedNotes = notes.filter((_, index) => index !== selectedNoteIndex);
+      setNotes(updatedNotes);
+      setSelectedNoteIndex(null);
+    }
+  };
+
   return (
     <div>
       <PageCreation onAddNote={addNote} />
       <Liste notes={notes} onSelectNote={setSelectedNoteIndex} />
       {selectedNoteIndex !== null && (
-        <Modifier note={notes[selectedNoteIndex]} onSave={saveNote} />
+        <Modifier note={notes[selectedNoteIndex]} onSave={saveNote} onDelete={deleteNote}/>
       )}
     </div>
   );
